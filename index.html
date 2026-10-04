@@ -3,332 +3,366 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#FDFBF5">
+<meta name="theme-color" content="#2A211A">
 <title>ソーダ喫茶 · 气泡喫茶店</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#FDFBF5; --ink:#4A3A30; --ink2:#6B5A4C; --muted:#A29484;
-  --soda:#8FCFE0; --soda2:#D6EEF4; --cherry:#D94F5C; --cream:#FFF6E8;
-  --gold:#C9A05C; --hair:rgba(74,58,48,.14);
+  --paper:#F7F2E7; --ink:#3B2F26; --ink2:#5C4E40; --muted:#9A8C7A;
+  --wood:#5C4432; --wood2:#3E2E22; --soda:#7FC4D8; --sodaD:#3E88A0;
+  --cherry:#C74852; --cream:#FFF6E4; --gold:#C9A05C; --hair:rgba(59,47,38,.16);
 }
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-body{font-family:'Noto Sans SC','PingFang SC',sans-serif;background:var(--bg);color:var(--ink);line-height:1.9;
-  padding-bottom:130px;-webkit-font-smoothing:antialiased}
-body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.5;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E")}
-.wrap{max-width:720px;margin:0 auto;padding:0 20px;position:relative;z-index:2}
-.serif{font-family:'Noto Serif SC','Songti SC',serif}
+body{font-family:'Noto Sans SC','PingFang SC',sans-serif;background:var(--paper);color:var(--ink);line-height:1.9;padding-bottom:120px;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:98;opacity:.4;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E")}
+.wrap{max-width:860px;margin:0 auto;padding:0 18px}
 
 /* ============ 环境气泡 ============ */
-#amb{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
-#amb i{position:absolute;bottom:-30px;border-radius:50%;border:1.5px solid rgba(143,207,224,.5);
-  background:radial-gradient(circle at 32% 30%,rgba(255,255,255,.85),rgba(214,238,244,.18) 62%);
+#amb{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden}
+#amb i{position:absolute;bottom:-30px;border-radius:50%;background:radial-gradient(circle at 32% 30%,rgba(255,255,255,.85),rgba(143,196,216,.25) 60%,transparent 75%);
   animation:rise linear infinite}
-@keyframes rise{to{transform:translateY(-112vh) translateX(6vw)}}
+@keyframes rise{to{transform:translateY(-115vh) translateX(24px)}}
 
-/* ============ 店招 ============ */
-header{padding:calc(env(safe-area-inset-top) + 46px) 0 0;text-align:center}
-.kicker{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:11px;letter-spacing:5px;color:var(--gold)}
-h1{font-family:'Noto Serif SC',serif;font-size:34px;font-weight:600;letter-spacing:3px;margin-top:10px;color:var(--ink)}
-h1 .jp{display:block;font-size:13px;font-weight:500;letter-spacing:8px;color:var(--muted);margin-top:6px}
-.since{display:inline-flex;align-items:center;gap:10px;margin-top:14px;font-size:10.5px;letter-spacing:3px;color:var(--muted)}
-.since::before,.since::after{content:'';width:32px;height:1px;background:var(--hair)}
-.shopnote{margin:18px auto 0;max-width:340px;background:var(--cream);border:1px solid var(--hair);border-radius:14px;
-  padding:10px 18px;font-family:'Noto Serif SC',serif;font-size:12px;color:var(--ink2);letter-spacing:2px}
-.awning{height:22px;margin:26px -20px 0;background:repeating-linear-gradient(90deg,var(--soda2) 0 26px,var(--soda) 26px 52px);
-  border-bottom:2px solid rgba(74,58,48,.08)}
+/* ============ 迎宾门 ============ */
+#door{position:fixed;inset:0;z-index:50;background:var(--wood2);display:flex;align-items:center;justify-content:center;padding:20px;transition:opacity .8s,transform .8s}
+#door.leave{opacity:0;transform:translateY(-24px);pointer-events:none}
+#door .dphoto{position:absolute;inset:0;background:url("img/interior.png") center/cover;filter:brightness(.5) sepia(.22)}
+.dwelcome{position:relative;z-index:2;text-align:center;background:rgba(30,24,18,.78);backdrop-filter:blur(6px);
+  border:1px solid rgba(255,246,228,.22);padding:44px 36px 38px;border-radius:6px;max-width:430px;width:100%;color:var(--cream)}
+.dwelcome .jp{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;letter-spacing:5px;color:var(--gold)}
+.dwelcome h1{font-family:'Noto Serif SC',serif;font-size:38px;font-weight:600;letter-spacing:8px;margin:12px 0 4px;color:#FFF6E4}
+.dwelcome .dsub{font-size:11px;letter-spacing:4px;color:rgba(255,246,228,.72);margin-bottom:16px}
+.dwelcome p{font-family:'Noto Serif SC',serif;font-size:13px;color:rgba(255,246,228,.85);margin-bottom:20px}
+.dwelcome select{width:100%;background:rgba(255,246,228,.1);color:var(--cream);border:1px solid rgba(255,246,228,.3);
+  padding:11px 12px;border-radius:4px;font-family:inherit;font-size:13px;margin-bottom:14px;text-align:center}
+.dwelcome select option{color:var(--ink);background:var(--cream)}
+#enterBtn{width:100%;border:none;background:var(--cherry);color:#FFF6E4;font-family:inherit;font-weight:700;
+  font-size:14px;letter-spacing:5px;padding:13px;border-radius:4px;cursor:pointer;transition:transform .15s}
+#enterBtn:active{transform:scale(.97)}
+.dnote{font-size:10px;color:rgba(255,246,228,.5);margin-top:14px;letter-spacing:2px}
+
+/* ============ 店内 ============ */
+header{background:linear-gradient(180deg,var(--wood2),var(--wood));padding:calc(env(safe-area-inset-top) + 26px) 0 20px;text-align:center;color:var(--cream);position:relative}
+header::after{content:'';position:absolute;left:0;right:0;bottom:-9px;height:18px;
+  background:repeating-linear-gradient(90deg,var(--paper) 0 22px,transparent 22px 44px)}
+.lamp{display:inline-block;font-family:'Noto Sans SC',sans-serif;font-weight:700;font-size:11px;letter-spacing:4px;
+  color:#8FE3A8;border:1.5px solid #8FE3A8;padding:4px 16px;border-radius:999px;box-shadow:0 0 14px rgba(143,227,168,.35);animation:glow 2.6s ease-in-out infinite}
+.lamp.closed{color:var(--muted);border-color:var(--muted);box-shadow:none;animation:none}
+@keyframes glow{50%{box-shadow:0 0 22px rgba(143,227,168,.6)}}
+header h1{font-family:'Noto Serif SC',serif;font-size:30px;font-weight:600;letter-spacing:7px;margin-top:14px;color:#FFF6E4}
+header h1 .jp{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;letter-spacing:2px;color:var(--gold);font-weight:500}
+.clock{font-family:'Cormorant Garamond',serif;font-size:12px;letter-spacing:3px;color:rgba(255,246,228,.62);margin-top:4px}
+.lady{font-family:'Noto Serif SC',serif;font-size:12.5px;letter-spacing:1px;margin-top:12px;min-height:26px;transition:opacity .4s;color:#F0D9A8}
+
+/* ============ 黑板 ============ */
+.board{max-width:860px;margin:26px auto 0;padding:0 18px}
+.board .inner{background:#2E3B33;border-radius:6px;border:9px solid #7A5B3F;box-shadow:inset 0 0 30px rgba(0,0,0,.35);
+  padding:16px 20px;text-align:center;color:#EDE6D4;font-family:'Noto Serif SC',serif;font-size:13px;letter-spacing:1px}
+.board .inner b{color:#F0C97F}
+.board .tag{font-size:10px;letter-spacing:4px;color:#A8B5A0;display:block;margin-bottom:4px}
 
 /* ============ 菜单 ============ */
-.menuhead{display:flex;align-items:baseline;gap:14px;margin:42px 0 6px;border-bottom:1.5px solid var(--hair);padding-bottom:10px}
-.menuhead h2{font-family:'Noto Serif SC',serif;font-size:19px;font-weight:600;letter-spacing:4px}
-.menuhead .jp2{font-size:10px;letter-spacing:3px;color:var(--muted)}
-.menuhead .n{margin-left:auto;font-size:10px;letter-spacing:2px;color:var(--muted);font-family:'Cormorant Garamond',serif;font-style:italic}
-.mgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}
-@media(max-width:430px){.mgrid{grid-template-columns:1fr 1fr;gap:10px}}
-.mcard{position:relative;background:var(--card);border:1.5px solid var(--hair);border-radius:18px;padding:16px 12px 12px;text-align:center;transition:all .2s}
-.mcard.tasted{border-color:var(--gold);background:linear-gradient(160deg,#FFFDF6,#FFF7E6)}
-.cup{height:96px;display:flex;align-items:flex-end;justify-content:center;margin-bottom:8px}
-.jname{font-family:'Noto Serif SC',serif;font-size:11px;letter-spacing:1.5px;color:var(--muted)}
-.cname{font-family:'Noto Serif SC',serif;font-size:15px;font-weight:600;letter-spacing:1px;margin-top:2px}
-.desc{font-family:'Noto Sans SC',sans-serif;font-size:10px;color:var(--muted);margin-top:4px;line-height:1.7;min-height:34px}
-.prow{display:flex;align-items:center;justify-content:space-between;margin-top:8px;padding-top:8px;border-top:1px dashed var(--hair)}
-.price{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:17px;font-weight:600;color:var(--cherry)}
-.orderbtn{border:none;background:var(--ink);color:#FFF9EE;font-family:'Noto Sans SC',sans-serif;font-size:11px;letter-spacing:2px;
-  padding:6px 14px;border-radius:999px;cursor:pointer;transition:all .15s}
-.orderbtn:active{transform:scale(.94)}
-.orderbtn.ordered{background:var(--gold)}
-.stamp{position:absolute;top:10px;right:10px;width:34px;height:34px;border:1.8px solid var(--gold);border-radius:50%;
-  display:flex;align-items:center;justify-content:center;font-size:8.5px;letter-spacing:1px;color:var(--gold);
-  transform:rotate(-14deg);font-family:'Noto Serif SC',serif;background:rgba(255,247,230,.85)}
-
-/* ============ 杯子拟物 ============ */
-.glass{position:relative;width:56px}
-.glass .body{width:56px;border-radius:6px 6px 16px 16px;border:2px solid rgba(74,58,48,.25);
-  border-top-width:1px;position:relative;overflow:hidden;box-shadow:inset 4px 6px 10px rgba(255,255,255,.5),inset -6px -4px 10px rgba(74,58,48,.06)}
-.glass .liq{position:absolute;inset:0}
-.glass .liq i{position:absolute;bottom:-8px;width:7px;height:7px;border-radius:50%;border:1px solid rgba(255,255,255,.75);
-  background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.95),rgba(255,255,255,.15));animation:bub 2.6s linear infinite}
-@keyframes bub{0%{transform:translateY(0);opacity:0}18%{opacity:1}100%{transform:translateY(-72px);opacity:0}}
-.glass .shine{position:absolute;top:6px;left:7px;width:6px;height:60%;border-radius:4px;background:rgba(255,255,255,.55);filter:blur(1px)}
-.glass .straw{position:absolute;top:-26px;right:9px;width:5px;height:46px;border-radius:3px;transform:rotate(9deg);z-index:3}
-.glass .straw::after{content:'';position:absolute;top:0;left:0;right:0;height:10px;border-radius:3px;background:repeating-linear-gradient(-45deg,#fff 0 4px,transparent 4px 8px);opacity:.85}
-.glass .cherry{position:absolute;top:-8px;left:10px;width:13px;height:13px;border-radius:50%;
-  background:radial-gradient(circle at 34% 30%,#F2838D,var(--cherry) 68%);box-shadow:0 2px 4px rgba(217,79,92,.4);z-index:4}
-.glass .cherry::before{content:'';position:absolute;top:-7px;left:5px;width:1.5px;height:8px;background:#7A5B3A;transform:rotate(18deg)}
-.cream-top{position:absolute;top:-13px;left:6px;right:6px;height:16px;border-radius:10px 10px 4px 4px;
-  background:linear-gradient(180deg,#FFFCF4,#F7EAD6);box-shadow:0 2px 3px rgba(74,58,48,.12);z-index:2}
-.glass.short .body{width:64px;border-radius:10px 10px 18px 18px}
-.glass .marble{position:absolute;bottom:10px;left:22px;width:12px;height:12px;border-radius:50%;z-index:5;
-  background:radial-gradient(circle at 35% 30%,#FFF,#9CC8D6 70%);box-shadow:inset -2px -2px 4px rgba(74,58,48,.25)}
-/* 甜品 */
-.dish{position:relative;width:70px}
-.dish .plate{height:8px;border-radius:50%;background:linear-gradient(180deg,#FFF,#EFE7D8);border:1px solid var(--hair);margin-top:-4px}
-.pudding{width:56px;height:44px;margin:0 auto;border-radius:10px 10px 14px 14px;position:relative;
-  background:linear-gradient(180deg,#F5C866 0 26%,#F7DFA3 26% 30%,#FBEFD2 30%);box-shadow:inset -5px -4px 8px rgba(201,160,92,.28)}
-.pudding::before{content:'';position:absolute;top:-7px;left:0;right:0;height:12px;border-radius:50% 50% 8px 8px;
-  background:linear-gradient(180deg,#B96A3C,#8F4E2A)}
-.pudding .cherry{position:absolute;top:-13px;left:22px;width:11px;height:11px;border-radius:50%;
-  background:radial-gradient(circle at 34% 30%,#F2838D,var(--cherry) 68%)}
-.parfait{width:46px;height:78px;margin:0 auto;border-radius:8px 8px 14px 14px;position:relative;overflow:hidden;border:2px solid rgba(74,58,48,.22);
-  background:linear-gradient(180deg,#FBEFD2 0 22%,#F4B8C4 22% 44%,#FBEFD2 44% 52%,#C9E8B8 52% 70%,#FBEFD2 70% 78%,#F2D8A8 78%)}
-.parfait .creamtop{position:absolute;top:0;left:0;right:0;height:15px;border-radius:8px 8px 6px 6px;background:linear-gradient(180deg,#FFFCF4,#F7EAD6)}
-.sand{width:66px;height:40px;margin:0 auto;position:relative}
-.sand .layer{position:absolute;inset:0;border-radius:5px;background:linear-gradient(180deg,#F2E3C0 0 30%,#FFF 30% 38%,#F8C8CE 38% 50%,#FFF 50% 58%,#C9E8B8 58% 68%,#FFF 68% 74%,#F2E3C0 74%);border:1.5px solid rgba(74,58,48,.18)}
-.hotcake{width:64px;margin:0 auto;position:relative;padding-bottom:6px}
-.hotcake .cake{height:15px;border-radius:8px;background:linear-gradient(180deg,#E8B96A,#D9A24E);border:1px solid rgba(74,58,48,.15);margin-top:2px;position:relative}
-.hotcake .cake:first-child{margin-top:14px}
-.hotcake .cake::before{content:'';position:absolute;top:-4px;left:14px;right:22px;height:8px;border-radius:50%;
-  background:radial-gradient(circle at 40% 35%,#FFF6DE,#F0DFA8)}
-.hotcake .butter{position:absolute;top:8px;left:26px;width:12px;height:9px;background:#F9E27D;border:1px solid rgba(201,160,92,.6);transform:rotate(-8deg);z-index:2}
+.tabs{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:26px 0 4px}
+.tab{border:1.5px solid var(--wood);background:none;color:var(--wood);font-family:'Noto Sans SC',sans-serif;
+  font-weight:700;font-size:12px;letter-spacing:2px;padding:8px 18px;border-radius:999px;cursor:pointer;transition:all .2s}
+.tab.on{background:var(--wood);color:var(--cream)}
+.menu{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px;margin-top:18px}
+.mcard{background:#fff;border-radius:10px;overflow:hidden;border:1px solid var(--hair);box-shadow:0 4px 14px rgba(59,47,38,.08);transition:transform .2s}
+.mcard:active{transform:scale(.98)}
+.mimg{position:relative;height:158px;background:linear-gradient(135deg,#E8E0D0,#D9CDB8)}
+.mimg img{width:100%;height:100%;object-fit:cover;display:block}
+.mimg .shine{position:absolute;inset:0;background:linear-gradient(115deg,transparent 42%,rgba(255,255,255,.32) 50%,transparent 58%)}
+.mimg.noimg::after{content:'♨ 准备中';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:12px}
+.stamp{position:absolute;top:10px;right:10px;font-family:'Noto Serif SC',serif;font-size:12px;font-weight:700;color:var(--cherry);
+  border:2px solid var(--cherry);padding:2px 9px;border-radius:4px;transform:rotate(-11deg);background:rgba(255,246,228,.9);letter-spacing:2px}
+.mbody{padding:12px 14px 14px}
+.mjp{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:12px;letter-spacing:1px;color:var(--sodaD)}
+.mzh{font-family:'Noto Serif SC',serif;font-size:17px;font-weight:600;letter-spacing:1px;margin-top:1px}
+.md{font-family:'Noto Sans SC',sans-serif;font-size:11px;color:var(--muted);line-height:1.8;margin-top:4px}
+.mrow{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
+.mp{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:600;color:var(--cherry)}
+.orderbtn{border:none;background:var(--wood);color:var(--cream);font-family:inherit;font-weight:700;font-size:11.5px;
+  letter-spacing:2px;padding:8px 18px;border-radius:999px;cursor:pointer;transition:transform .15s}
+.orderbtn:active{transform:scale(.93)}
 
 /* ============ 点单篮 ============ */
-#cartBtn{position:fixed;right:18px;bottom:calc(env(safe-area-inset-bottom) + 18px);z-index:40;
-  width:58px;height:58px;border-radius:50%;border:none;background:var(--ink);color:#FFF9EE;cursor:pointer;
-  box-shadow:0 8px 22px rgba(74,58,48,.35);display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.2}
-#cartBtn b{font-family:'Cormorant Garamond',serif;font-size:19px}
-#cartBtn small{font-size:8.5px;letter-spacing:2px}
-#cartBtn .cnt{position:absolute;top:-4px;right:-4px;min-width:20px;height:20px;border-radius:999px;background:var(--cherry);color:#fff;
-  font-size:11px;display:flex;align-items:center;justify-content:center;padding:0 5px;font-weight:700}
-
-.overlay{position:fixed;inset:0;z-index:50;background:rgba(46,36,30,.45);backdrop-filter:blur(3px);display:none;align-items:flex-end;justify-content:center}
-.overlay.on{display:flex}
-.sheet{background:var(--bg);width:100%;max-width:520px;border-radius:22px 22px 0 0;padding:22px 22px calc(env(safe-area-inset-bottom) + 26px);
-  max-height:82vh;overflow:auto;animation:sheetUp .3s}
-@keyframes sheetUp{from{transform:translateY(40px);opacity:0}}
-.sheet h3{font-family:'Noto Serif SC',serif;font-size:17px;letter-spacing:3px;text-align:center;margin-bottom:4px}
-.rows{margin-top:12px}
-.srow{display:flex;align-items:center;gap:10px;padding:10px 2px;border-bottom:1px dashed var(--hair);font-size:13px}
-.srow .nm{flex:1}.srow .pr{font-family:'Cormorant Garamond',serif;color:var(--cherry);font-weight:600}
-.srow .rm{border:none;background:none;color:var(--muted);cursor:pointer;font-size:15px;padding:2px 6px}
-.total{display:flex;justify-content:space-between;align-items:baseline;padding:14px 2px 4px}
-.total b{font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--cherry)}
-.bigbtn{width:100%;border:none;background:var(--ink);color:#FFF9EE;font-size:13px;letter-spacing:3px;padding:13px;border-radius:14px;cursor:pointer;margin-top:10px;font-family:'Noto Sans SC',sans-serif}
-.bigbtn.ghost{background:none;color:var(--muted);border:1.5px solid var(--hair)}
-.emptycart{text-align:center;color:var(--muted);font-size:12.5px;padding:26px 0;letter-spacing:1px}
+#cartBtn{position:fixed;right:18px;bottom:calc(env(safe-area-inset-bottom) + 18px);z-index:40;border:none;cursor:pointer;
+  background:var(--cherry);color:#FFF6E4;font-family:inherit;font-weight:700;font-size:12.5px;letter-spacing:2px;
+  padding:13px 22px;border-radius:999px;box-shadow:0 8px 22px rgba(199,72,82,.4)}
+#cartBtn b{font-family:'Cormorant Garamond',serif;font-size:15px;margin-left:4px}
+.ov{position:fixed;inset:0;z-index:45;background:rgba(40,32,24,.55);display:none;align-items:flex-end;justify-content:center}
+.ov.on{display:flex}
+.sheet{background:var(--paper);width:100%;max-width:460px;border-radius:16px 16px 0 0;padding:22px 22px calc(env(safe-area-inset-bottom) + 24px);max-height:82vh;overflow:auto}
+.sheet h3{font-family:'Noto Serif SC',serif;font-size:16px;letter-spacing:3px;text-align:center;margin-bottom:12px}
+.srow{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px dashed var(--hair);font-size:13px}
+.srow .jp{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--muted);margin-left:6px;font-size:11px}
+#ctotal{text-align:right;font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;margin:12px 0}
+.btnrow{display:flex;gap:12px}
+.btnrow .btn{flex:1;border:none;border-radius:999px;padding:12px;font-family:inherit;font-weight:700;font-size:12.5px;letter-spacing:2px;cursor:pointer}
+.btnrow .ghost{background:none;border:1.5px solid var(--hair);color:var(--muted)}
+.btnrow .go{background:var(--cherry);color:#FFF6E4;box-shadow:0 6px 16px rgba(199,72,82,.35)}
+.btnrow .go:disabled{opacity:.4;box-shadow:none}
+.making{text-align:center;padding:30px 0;color:var(--ink2);font-family:'Noto Serif SC',serif;letter-spacing:2px}
+.making small{display:block;font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--muted);margin-top:6px;letter-spacing:3px}
 
 /* ============ 小票 ============ */
-#receiptOv{z-index:60;align-items:center;padding:20px}
-.receipt{background:#FFFDF8;width:100%;max-width:330px;padding:26px 22px 30px;position:relative;
-  box-shadow:0 14px 40px rgba(46,36,30,.35);font-family:'Noto Sans SC',sans-serif;animation:pop .35s}
-@keyframes pop{from{transform:scale(.9);opacity:0}}
-.receipt::before,.receipt::after{content:'';position:absolute;left:0;right:0;height:10px;
-  background:linear-gradient(-45deg,transparent 8px,#FFFDF8 0) 0 0/14px 10px repeat-x}
-.receipt::before{top:-1px}
-.receipt::after{bottom:-1px;transform:scaleY(-1)}
-.rshop{text-align:center;font-family:'Noto Serif SC',serif;font-size:16px;letter-spacing:4px;font-weight:600}
-.rjp{text-align:center;font-size:9.5px;letter-spacing:4px;color:var(--muted);margin-top:2px}
-.rline{border-top:1.5px dashed rgba(74,58,48,.25);margin:12px 0}
-.rnum{text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:30px;color:var(--cherry)}
-.rnum small{display:block;font-size:9px;letter-spacing:3px;color:var(--muted);font-style:normal;font-family:'Noto Sans SC',sans-serif;margin-top:2px}
-.rrow{display:flex;justify-content:space-between;font-size:12px;color:var(--ink2);padding:3px 0}
-.rtot{display:flex;justify-content:space-between;font-size:13px;font-weight:700;padding-top:8px}
-.rmsg{text-align:center;font-size:10.5px;color:var(--muted);letter-spacing:2px;margin-top:12px;line-height:2}
-.rclose{display:block;margin:16px auto 0;border:none;background:var(--ink);color:#FFF9EE;font-size:12px;letter-spacing:3px;padding:10px 30px;border-radius:999px;cursor:pointer}
+#rPaper{background:var(--cream);max-width:340px;margin:6vh auto;border-radius:2px;padding:28px 26px;position:relative;
+  box-shadow:0 12px 40px rgba(0,0,0,.4);font-family:'Noto Serif SC',serif}
+.rshop{text-align:center;font-size:20px;font-weight:700;letter-spacing:6px}
+.rjp{text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:10.5px;letter-spacing:3px;color:var(--muted);margin-top:2px}
+.rline{border-top:1.5px dashed var(--hair);margin:13px 0}
+.rnum{text-align:center;font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:600;color:var(--ink)}
+.rnum small{display:block;font-family:'Noto Sans SC',sans-serif;font-size:10px;letter-spacing:3px;color:var(--muted);margin-top:-2px}
+.rrow{display:flex;justify-content:space-between;font-size:13px;padding:4px 0}
+.rrow .jp{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:10.5px;color:var(--muted);margin-left:5px}
+.rtot{display:flex;justify-content:space-between;font-size:15px;font-weight:700}
+.rmsg{text-align:center;font-size:11px;color:var(--muted);letter-spacing:1px;line-height:2;margin-top:4px}
+.rclose{display:block;margin:16px auto 0;border:none;background:var(--wood);color:var(--cream);font-family:inherit;
+  font-size:12px;font-weight:700;letter-spacing:3px;padding:10px 30px;border-radius:999px;cursor:pointer}
+#receiptOv{position:fixed;inset:0;z-index:48;background:rgba(40,32,24,.6);display:none;overflow:auto}
+#receiptOv.on{display:block}
 
-/* ============ toast/footer ============ */
-#toast{position:fixed;left:50%;bottom:92px;transform:translate(-50%,14px);z-index:70;background:var(--ink);color:#FFF9EE;
-  padding:11px 24px;border-radius:999px;font-size:12.5px;letter-spacing:2px;opacity:0;pointer-events:none;transition:all .3s;max-width:86vw;text-align:center}
+/* ============ 制霸/其他 ============ */
+#master{display:none;text-align:center;margin:30px auto 0;max-width:420px;background:linear-gradient(135deg,var(--gold),#E0C084);
+  border-radius:10px;padding:16px 20px;color:#4A3A18;font-family:'Noto Serif SC',serif;font-weight:700;letter-spacing:3px;font-size:15px;box-shadow:0 8px 24px rgba(201,160,92,.4)}
+#master.on{display:block;animation:fade .6s}
+footer{margin-top:70px;text-align:center;font-size:11px;color:var(--muted);letter-spacing:2px;line-height:2.2}
+footer .fine{display:block;font-size:10px;opacity:.7;margin-top:6px}
+#toast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom) + 86px);transform:translate(-50%,14px);z-index:60;
+  background:var(--wood2);color:var(--cream);padding:11px 24px;border-radius:999px;font-size:12.5px;letter-spacing:2px;
+  opacity:0;pointer-events:none;transition:all .3s}
 #toast.show{opacity:1;transform:translate(-50%,0)}
-footer{margin-top:80px;text-align:center;font-size:11px;color:var(--muted);letter-spacing:2px;line-height:2.2}
-footer .fine{display:block;font-size:9.5px;opacity:.75;margin-top:6px}
-.badge{display:none;text-align:center;margin:26px auto 0;max-width:300px;border:2px solid var(--gold);border-radius:16px;padding:14px;background:linear-gradient(160deg,#FFFDF6,#FFF7E6)}
-.badge.on{display:block;animation:pop .4s}
-.badge b{font-family:'Noto Serif SC',serif;letter-spacing:3px;color:var(--gold);font-size:15px}
-.badge p{font-size:11px;color:var(--ink2);margin-top:4px;letter-spacing:1px}
+.spark{position:fixed;width:7px;height:7px;border-radius:50%;pointer-events:none;z-index:70;animation:fall 1s forwards}
+@keyframes fall{to{transform:translateY(46vh) rotate(540deg);opacity:0}}
+.hidden{display:none!important}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media(max-width:560px){.menu{grid-template-columns:1fr 1fr}.mimg{height:130px}.dwelcome h1{font-size:31px}}
+@media(max-width:400px){.menu{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <div id="amb"></div>
-<div class="wrap">
-  <header>
-    <div class="kicker">Soda Kissaten · since 1975</div>
-    <h1>气泡喫茶店<span class="jp">ソーダ喫茶 ・ 氷のを緩やかに</span></h1>
-    <div class="since">OPEN · 冰的才够味</div>
-    <div class="shopnote">奶油苏打要慢慢喝，气泡升到杯口，刚好一整个下午。</div>
-    <div class="awning"></div>
-  </header>
 
-  <div class="menuhead"><h2>汽水 · ソーダ</h2><span class="jp2">GLASS SODA</span><span class="n" id="cSoda"></span></div>
-  <div class="mgrid" id="gSoda"></div>
-
-  <div class="menuhead"><h2>甜品 · 甘味</h2><span class="jp2">SWEETS</span><span class="n" id="cSweet"></span></div>
-  <div class="mgrid" id="gSweet"></div>
-
-  <div class="badge" id="master"><b>✦ 全品制霸 ✦</b><p>这家店的每一口，你都尝过了。店主敬上。</p></div>
-
-  <footer>
-    营业中 · 今日也备好了冰<br>
-    <span class="fine">点单为趣味玩法 · 价格为昭和风的想象 · 请勿真的来这里付钱</span>
-  </footer>
-</div>
-
-<button id="cartBtn"><b id="cartN">0</b><small>点单</small><span class="cnt" id="cartCnt" style="display:none">0</span></button>
-
-<div class="overlay" id="cartOv">
-  <div class="sheet">
-    <h3>今日点单</h3>
-    <div style="text-align:center;font-size:10px;letter-spacing:3px;color:var(--muted)">YOUR ORDER</div>
-    <div class="rows" id="crows"></div>
-    <div class="total"><span>合计 · お会計</span><b id="ctotal">¥0</b></div>
-    <button class="bigbtn" id="checkout">下单 —— 去拿小票</button>
-    <button class="bigbtn ghost" id="keepOv">再看看菜单</button>
+<!-- ============ 迎宾门 ============ -->
+<div id="door">
+  <div class="dphoto"></div>
+  <div class="dwelcome">
+    <div class="jp">irasshaimase · SINCE 1975</div>
+    <h1>气泡喫茶店</h1>
+    <div class="dsub">ソーダ喫茶 ・ 氷のを緩やかに</div>
+    <p>开在巷子里的昭和老店。<br>奶油苏打要慢慢喝，气泡升到杯口，刚好一整个下午。</p>
+    <select id="seatSel"></select>
+    <button id="enterBtn">请进 —— いらっしゃいませ</button>
+    <div class="dnote">请选一个喜欢的位置 · 店内全席禁烟有WiFi</div>
   </div>
 </div>
 
-<div class="overlay" id="receiptOv">
-  <div class="receipt" id="rPaper"></div>
+<div class="wrap">
+  <header>
+    <div class="lamp" id="openLamp">OPEN 営業中</div>
+    <h1>气泡喫茶店 <span class="jp">Soda Kissaten</span></h1>
+    <div class="clock" id="clock"></div>
+    <div class="lady" id="lady"></div>
+  </header>
+
+  <div class="board">
+    <div class="inner">
+      <span class="tag">本日の黑板 · TODAY</span>
+      今日推荐 —— <b>奶油苏打 × 昭和布丁</b>，店主最推荐的一组搭配。窗外有太阳，正适合坐窗边。
+    </div>
+  </div>
+
+  <div class="tabs" id="tabs"></div>
+  <div class="menu" id="menu"></div>
+
+  <div id="master">✦ 全品制霸 · 店主敬您一杯 · 御礼 ✦</div>
+
+  <footer>
+    ソーダ喫茶 · 营业时间 11:00 — 23:00 · 定休日：无休（今天也为您营业）<br>
+    <span class="fine">一间网页里的昭和喫茶店 · 趣味点单，请勿真实付费 · 冰的才够味</span>
+  </footer>
 </div>
 
+<button id="cartBtn">点单籃 <b id="cartN">0</b></button>
+<div class="ov" id="cartOv">
+  <div class="sheet">
+    <h3>您的点单 · ご注文</h3>
+    <div id="crows"></div>
+    <div id="ctotal">¥0</div>
+    <div class="btnrow">
+      <button class="btn ghost" id="cartClose">再看看菜单</button>
+      <button class="btn go" id="checkout">下单 · 注文する</button>
+    </div>
+  </div>
+</div>
+<div id="receiptOv"><div id="rPaper"></div></div>
 <div id="toast"></div>
 <script>
 const $=s=>document.querySelector(s);
-function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("show");clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove("show"),1900)}
+const S={tasted:[]};
+try{Object.assign(S,JSON.parse(localStorage.getItem("sk_v3")||"{}"))}catch(e){}
+if(!S.tasted)S.tasted=[];
+function save(){localStorage.setItem("sk_v3",JSON.stringify(S))}
+function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("show");clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove("show"),2100)}
 function spark(x,y,n=14){
-  const cs=["#8FCFE0","#D94F5C","#C9A05C","#FFF6E8"];
+  const cs=["#7FC4D8","#C74852","#C9A05C","#FFF6E4"];
   for(let i=0;i<n;i++){
     const s=document.createElement("div");s.className="spark";
     s.style.left=(x-3+(Math.random()*60-30))+"px";s.style.top=(y-3+(Math.random()*40-20))+"px";
     s.style.background=cs[i%4];
-    document.body.appendChild(s);
-    setTimeout(()=>s.remove(),1000);
+    document.body.appendChild(s);setTimeout(()=>s.remove(),980+Math.random()*300);
   }
 }
-(function ambient(){
-  const box=$("#amb");
-  for(let i=0;i<14;i++){
-    const b=document.createElement("i");
-    const sz=5+Math.random()*14;
-    b.style.width=b.style.height=sz+"px";
-    b.style.left=Math.random()*100+"vw";
-    b.style.animationDuration=(9+Math.random()*14)+"s";
-    b.style.animationDelay=(-Math.random()*20)+"s";
-    box.appendChild(b);
-  }
-})();
-
-/* ============ 菜单 ============ */
+(function amb(){const a=$("#amb");for(let i=0;i<14;i++){
+  const b=document.createElement("i"),sz=4+Math.random()*14;
+  b.style.left=Math.random()*100+"%";b.style.width=b.style.height=sz+"px";
+  b.style.opacity=.25+Math.random()*.5;
+  b.style.animationDuration=(9+Math.random()*14)+"s";b.style.animationDelay=(-Math.random()*20)+"s";
+  a.appendChild(b)}})();
+</script>
+<script>
 const MENU=[
- {id:"cream",jp:"クリームソーダ",cn:"奶油苏打",price:9,desc:"香草冰淇淋沉在蜜瓜汽水里，经典中的经典",type:"soda",cup:{cols:["#9AD9B8","#CFF0DB"],cream:1,cherry:1,liq:0}},
- {id:"melon",jp:"メロンソーダ",cn:"蜜瓜苏打",price:7,desc:"昭和喫茶的招牌绿，甜得理直气壮",type:"soda",cup:{cols:["#8FDCA9","#C8F0D6"],cherry:1}},
- {id:"straw",jp:"ストロベリーソーダ",cn:"草莓苏打",price:8,desc:"粉红色的下午，从第一口开始",type:"soda",cup:{cols:["#F4A9B8","#FBD3DC"],cream:1,cherry:1}},
- {id:"ramune",jp:"ラムネ",cn:"弹珠汽水",price:6,desc:"瓶子里那颗玻璃珠，是童年按住的开关",type:"soda",cup:{cols:["#BFE4EE","#E2F4F8"],marble:1,short:1}},
- {id:"coffee",jp:"コーヒーフロート",cn:"咖啡浮冰",price:8,desc:"苦与甜在杯中分层，像深夜和白昼",type:"soda",cup:{cols:["#5C4632","#8A6C50"],cream:1,short:1}},
- {id:"lemon",jp:"レモンソーダ",cn:"柠檬苏打",price:7,desc:"气泡最冲的一杯，适合没什么精神的下午",type:"soda",cup:{cols:["#F2E19A","#FAF0C6"],cherry:0}},
- {id:"pudding",jp:"プリン",cn:"昭和布丁",price:6,desc:"焦糖苦、蛋奶甜，勺子一挖就回到小时候",type:"sweet",cup:{kind:"pudding"}},
- {id:"anmitsu",jp:"あんみつ",cn:"红豆蜜",price:8,desc:"寒天、红豆、水果 —— 老派的温柔",type:"sweet",cup:{kind:"parfait"}},
- {id:"sand",jp:"フルーツサンド",cn:"水果三明治",price:9,desc:"奶油与水果藏在软面包里，切面最好看",type:"sweet",cup:{kind:"sand"}},
- {id:"hotcake",jp:"ホットケーキ",cn:"热蛋糕",price:8,desc:"黄油慢慢化进松饼里，不着急",type:"sweet",cup:{kind:"hotcake"}}
+ {id:"creamsoda",cat:"soda",jp:"クリームソーダ",zh:"奶油苏打",price:9,img:"img/creamsoda.png",d:"香草冰淇淋沉进蜜瓜汽水，昭和喫茶的头牌"},
+ {id:"melon",cat:"soda",jp:"メロンソーダ",zh:"蜜瓜苏打",price:7,img:"img/melon.png",d:"招牌的那抹绿，是昭和下午茶的颜色"},
+ {id:"strawberry",cat:"soda",jp:"いちごソーダ",zh:"草莓苏打",price:8,img:"img/strawberry.png",d:"粉红色的气泡，从第一口甜到最后"},
+ {id:"ramune",cat:"soda",jp:"ラムネ",zh:"弹珠汽水",price:6,img:"img/ramune.png",d:"瓶子里那颗玻璃珠，是按不住的童年"},
+ {id:"lemon",cat:"soda",jp:"レモンソーダ",zh:"柠檬苏打",price:7,img:"img/lemon.png",d:"气泡最冲的一杯，酸得清清爽爽"},
+ {id:"calpis",cat:"soda",jp:"カルピス",zh:"可尔必思",price:7,img:"img/calpis.png",d:"乳酸菌的温柔，加冰才是夏天的喝法"},
+ {id:"coffeefloat",cat:"cafe",jp:"コーヒーフロート",zh:"咖啡浮冰",price:8,img:"img/coffeefloat.png",d:"苦与甜在杯中分层，像深夜和白昼"},
+ {id:"milktea",cat:"cafe",jp:"いれこミルクティー",zh:"皇家奶茶",price:8,img:"img/milktea.png",d:"浓茶撞进牛奶，加一勺练乳更乖"},
+ {id:"purin",cat:"sweet",jp:"プリン",zh:"昭和布丁",price:8,img:"img/purin.png",d:"焦糖那一面要最先挖——店长的规矩"},
+ {id:"anmitu",cat:"sweet",jp:"あんみつ",zh:"红豆蜜",price:9,img:"img/anmitu.png",d:"红豆、寒天与水果，慢工出的细甜"},
+ {id:"fruitsand",cat:"sweet",jp:"フルーツサンド",zh:"水果三明治",price:9,img:"img/fruitsand.png",d:"切面的奶油和水果，是喫茶店的风景"},
+ {id:"parfait",cat:"sweet",jp:"フルーツパフェ",zh:"草莓芭菲",price:12,img:"img/parfait.png",d:"高脚杯里堆着整个果园，勺子要伸到底"},
+ {id:"hotcake",cat:"sweet",jp:"ホットケーキ",zh:"热蛋糕",price:8,img:"img/hotcake.png",d:"黄油慢慢融化，糖浆要浇到满意为止"},
+ {id:"napolitan",cat:"light",jp:"ナポリタン",zh:"拿坡里意面",price:12,img:"img/napolitan.png",d:"番茄酱炒面的昭和定番，喫茶店永远的王"},
+ {id:"omurice",cat:"light",jp:"オムライス",zh:"蛋包饭",price:15,img:"img/omurice.png",d:"软蛋皮盖饭，勺子划开的那一瞬间是主角"}
 ];
-const PRICE_FMT=n=>"¥"+n;
-let CART=[];
-const S_KEY="sk_v1";
-let S;
-try{S=JSON.parse(localStorage.getItem(S_KEY))||{tasted:[]}}catch(e){S={tasted:[]}}
-if(!S.tasted)S.tasted=[];
-function save(){localStorage.setItem(S_KEY,JSON.stringify(S))}
+const SEATS=["吧台席 · 看师傅做甜品","窗边席 · 阳光最好","卡座 · 适合聊很久"];
+const LADY=["いらっしゃいませ —— 欢迎光临，今天想喝点什么？","奶油苏打要慢慢喝，气泡升到杯口刚好","冰的才够味，这是店里的规矩","不着急，坐多久都是您的","布丁的焦糖面要先吃——店长的嘱咐"];
+</script>
+<script>
+/* ============ 迎宾 ============ */
+let SEAT=localStorage.getItem("sk_seat")||"";
+function enter(){
+  SEAT=$("#seatSel").value||SEATS[0];localStorage.setItem("sk_seat",SEAT);
+  $("#door").classList.add("leave");
+  setTimeout(()=>$("#door").remove(),900);
+  document.body.style.overflow="";
+  ladyLoop();clockTick();setInterval(clockTick,30000);
+  toast("いらっしゃいませ —— "+SEAT);
+}
+(function(){
+  const sel=$("#seatSel");
+  SEATS.forEach(s=>{const o=document.createElement("option");o.textContent=s;if(s===SEAT)o.selected=true;sel.appendChild(o)});
+  if(SEAT){enter()}
+  else{document.body.style.overflow="hidden"}
+})();
+$("#enterBtn").addEventListener("click",enter);
 
-function cupHTML(c){
-  if(c.kind==="pudding")return `<div class="dish"><div class="pudding"><span class="cherry"></span></div><div class="plate"></div></div>`;
-  if(c.kind==="parfait")return `<div class="dish"><div class="parfait"><span class="creamtop"></span></div><div class="plate"></div></div>`;
-  if(c.kind==="sand")return `<div class="dish"><div class="sand"><div class="layer"></div></div><div class="plate"></div></div>`;
-  if(c.kind==="hotcake")return `<div class="dish"><div class="hotcake"><div class="cake"></div><div class="cake"></div><div class="cake"></div><div class="butter"></div></div><div class="plate"></div></div>`;
-  const grad=`linear-gradient(180deg,${c.cols[1]} 0%,${c.cols[0]} 100%)`;
-  let extra="";
-  for(let i=0;i<4;i++)extra+=`<i style="left:${12+i*20}%;animation-delay:${-i*.6+(Math.random()*.8)}s;animation-duration:${2.2+Math.random()*1.2}s"></i>`;
-  return `<div class="glass${c.short?" short":""}">
-    ${c.straw!==0?`<span class="straw" style="background:${c.cherry?"#D94F5C":"#8FCFE0"}"></span>`:""}
-    ${c.cream?`<span class="cream-top"></span>`:""}
-    ${c.cherry?`<span class="cherry"></span>`:""}
-    <div class="body" style="height:74px"><div class="liq" style="background:${grad}">${extra}</div><span class="shine"></span>${c.marble?'<span class="marble"></span>':""}</div>
-  </div>`;
+/* ============ 菜单渲染 ============ */
+const CATS=[["soda","汽水 · ソーダ"],["cafe","咖啡茶 · 也有"],["sweet","甜品 · 甘味"],["light","轻食 · 軽食"]];
+let curCat="soda";
+function buildTabs(){
+  const t=$("#tabs");
+  CATS.forEach(([k,label])=>{
+    const b=document.createElement("button");b.className="tab"+(k===curCat?" on":"");b.textContent=label;
+    b.addEventListener("click",()=>{curCat=k;t.querySelectorAll(".tab").forEach(x=>x.classList.toggle("on",x===b));renderMenu()});
+    t.appendChild(b);
+  });
 }
 function renderMenu(){
-  const gs=$("#gSoda"),gw=$("#gSweet");gs.innerHTML="";gw.innerHTML="";
-  MENU.forEach(m=>{
-    const el=document.createElement("div");
+  const g=$("#menu");g.innerHTML="";
+  MENU.filter(m=>m.cat===curCat).forEach(m=>{
     const tasted=S.tasted.includes(m.id);
-    el.className="mcard"+(tasted?" tasted":"");
-    el.innerHTML=`${tasted?'<span class="stamp">来过</span>':""}
-      <div class="cup">${cupHTML(m.cup)}</div>
-      <div class="jname">${m.jp}</div>
-      <div class="cname">${m.cn}</div>
-      <div class="desc">${m.desc}</div>
-      <div class="prow"><span class="price">${PRICE_FMT(m.price)}</span><button class="orderbtn${tasted?" ordered":""}">来一份</button></div>`;
-    el.querySelector(".orderbtn").addEventListener("click",e=>{
-      const inCart=CART.filter(c=>c.id===m.id).length;
-      CART.push({id:m.id,name:m.cn,jp:m.jp,price:m.price});
-      save();renderCart();
-      spark(e.clientX,e.clientY,8);
-      toast(tasted?`${m.cn} · 又来一杯（第 ${inCart+2} 杯啦）`:`${m.cn} ✦ 收进点单篮`);
-      if(!tasted){S.tasted.push(m.id);save();renderMenu();
-        if(S.tasted.length===MENU.length){$("#master").classList.add("on");setTimeout(()=>spark(innerWidth/2,innerHeight*.4,30),400)}
-        else if(S.tasted.length===MENU.length-1)toast(`就差 1 品就全品制霸了`);
-      }
+    const c=document.createElement("div");c.className="mcard";
+    c.innerHTML=`
+      <div class="mimg"><img src="${m.img}" alt="${m.zh}" loading="lazy" onerror="this.parentNode.classList.add('noimg');this.remove()"><div class="shine"></div>
+        ${tasted?'<span class="stamp">来过</span>':""}</div>
+      <div class="mbody">
+        <div class="mjp">${m.jp}</div>
+        <div class="mzh">${m.zh}</div>
+        <div class="md">${m.d}</div>
+        <div class="mrow"><span class="mp">¥${m.price}</span><button class="orderbtn">来一份</button></div>
+      </div>`;
+    c.querySelector(".orderbtn").addEventListener("click",e=>{
+      CART.push(m);saveCart();renderCart();
+      const r=e.target.getBoundingClientRect();
+      spark(r.left+r.width/2,r.top,10);
+      toast(m.zh+" ✦ 收进点单篮");
     });
-    (m.type==="soda"?gs:gw).appendChild(el);
+    g.appendChild(c);
   });
-  $("#cSoda").textContent=MENU.filter(m=>m.type==="soda"&&S.tasted.includes(m.id)).length+" / "+MENU.filter(m=>m.type==="soda").length+" 尝过";
-  $("#cSweet").textContent=MENU.filter(m=>m.type==="sweet"&&S.tasted.includes(m.id)).length+" / "+MENU.filter(m=>m.type==="sweet").length+" 尝过";
-  $("#master").classList.toggle("on",S.tasted.length===MENU.length);
 }
 
-/* ============ 点单篮 ============ */
+/* ============ 篮与小票 ============ */
+let CART=[];
+function saveCart(){localStorage.setItem("sk_cart",JSON.stringify(CART))}
 function renderCart(){
   $("#cartN").textContent=CART.length;
-  const cc=$("#cartCnt");
-  cc.style.display=CART.length?"flex":"none";cc.textContent=CART.length;
   const rows=$("#crows");
-  rows.innerHTML=CART.length?CART.map((c,i)=>`<div class="srow"><span class="nm">${c.name} <small style="color:var(--muted)">${c.jp}</small></span><span class="pr">${PRICE_FMT(c.price)}</span><button class="rm" data-i="${i}">✕</button></div>`).join("")
-    :'<div class="emptycart">篮子还空着 —— 菜单在等你</div>';
-  $("#ctotal").textContent="¥"+CART.reduce((a,c)=>a+c.price,0);
-  rows.querySelectorAll(".rm").forEach(b=>b.addEventListener("click",()=>{CART.splice(+b.dataset.i,1);save();renderCart()}));
+  rows.innerHTML=CART.length?"":"篮子空着 —— 先去菜单挑一杯";
+  const cnt={};
+  CART.forEach(m=>cnt[m.id]=(cnt[m.id]||0)+1);
+  let tot=0;
+  Object.keys(cnt).forEach(id=>{
+    const m=MENU.find(x=>x.id===id);tot+=m.price*cnt[id];
+    const r=document.createElement("div");r.className="srow";
+    r.innerHTML=`<span>${m.zh}<em class="jp">${m.jp}</em></span><span>×${cnt[id]}</span><span>¥${m.price*cnt[id]}</span>`;
+    rows.appendChild(r);
+  });
+  $("#ctotal").textContent="¥"+tot;
+  $("#checkout").disabled=!CART.length;
 }
-$("#cartBtn").addEventListener("click",()=>{renderCart();$("#cartOv").classList.add("on")});
-$("#keepOv").addEventListener("click",()=>$("#cartOv").classList.remove("on"));
-$("#cartOv").addEventListener("click",e=>{if(e.target.id==="cartOv")$("#cartOv").classList.remove("on")});
+$("#cartBtn").addEventListener("click",()=>{$("#cartOv").classList.add("on");document.body.style.overflow="hidden"});
+$("#cartClose").addEventListener("click",()=>{$("#cartOv").classList.remove("on");document.body.style.overflow=""});
+$("#cartOv").addEventListener("click",e=>{if(e.target.id==="cartOv"){$("#cartOv").classList.remove("on");document.body.style.overflow=""}});
 $("#checkout").addEventListener("click",()=>{
-  if(!CART.length){toast("先点一杯吧 —— 菜单都替你想好了");return}
-  const items=CART.slice();CART=[];save();renderCart();
-  const num=String(1+Math.floor(Math.random()*98)).padStart(2,"0");
-  $("#rPaper").innerHTML=`<div class="rshop">气泡喫茶店</div><div class="rjp">ソーダ喫茶 ・ SINCE 1975</div>
-    <div class="rline"></div>
-    <div class="rnum">No.${num}<small>您的号牌 · 御番号</small></div>
-    <div class="rline"></div>
-    ${items.map(c=>`<div class="rrow"><span>${c.name}</span><span>${PRICE_FMT(c.price)}</span></div>`).join("")}
-    <div class="rline"></div>
-    <div class="rtot"><span>合計</span><span style="color:var(--cherry)">${PRICE_FMT(items.reduce((a,c)=>a+c.price,0))}</span></div>
-    <div class="rmsg">气泡正在升，请慢慢等 ——<br>冰的才够味 · 席上奉</div>
-    <button class="rclose" onclick="document.querySelector('#receiptOv').classList.remove('on')">收好小票</button>`;
-  $("#cartOv").classList.remove("on");
-  $("#receiptOv").classList.add("on");
-  spark(innerWidth/2,innerHeight*.42,20);
+  $("#crows").innerHTML='<div class="making">正在打奶油 · 气泡上齐…<br><small>少々お待ちください</small></div>';
+  $("#checkout").disabled=true;
+  setTimeout(()=>{
+    const items=[...new Set(CART.map(m=>m.id))].map(id=>MENU.find(x=>x.id===id));
+    items.forEach(m=>{if(!S.tasted.includes(m.id)){S.tasted.push(m.id)}});
+    save();CART=[];saveCart();renderCart();renderMenu();
+    const num=String(1+Math.floor(Math.random()*98)).padStart(2,"0");
+    $("#rPaper").innerHTML=`<div class="rshop">气泡喫茶店</div><div class="rjp">ソーダ喫茶 ・ SINCE 1975</div>
+      <div class="rline"></div>
+      <div class="rnum">No.${num}<small>您的号牌 · 御番号</small></div>
+      <div class="rline"></div>
+      ${items.map(m=>`<div class="rrow"><span>${m.zh}<em class="jp">${m.jp}</em></span><span>¥${m.price}</span></div>`).join("")}
+      <div class="rline"></div>
+      <div class="rtot"><span>合計</span><span style="color:var(--cherry)">¥${items.reduce((a,m)=>a+m.price,0)}</span></div>
+      <div class="rmsg">气泡正在升，请慢慢等 ——<br>${SEAT} · 席上奉</div>
+      <button class="rclose" onclick="document.querySelector('#receiptOv').classList.remove('on');document.body.style.overflow=''">收好小票</button>`;
+    $("#cartOv").classList.remove("on");
+    $("#receiptOv").classList.add("on");
+    if(S.tasted.length===MENU.length){
+      $("#master").classList.add("on");
+      setTimeout(()=>toast("✦ 全品制霸 · 店主敬一杯 ✦"),500);
+    }
+  },1800);
 });
 $("#receiptOv").addEventListener("click",e=>{if(e.target.id==="receiptOv")e.target.classList.remove("on")});
 
-renderMenu();renderCart();
+/* ============ 女将 & 时钟 & 黑板 ============ */
+function ladyLoop(){
+  const el=$("#lady");let i=0;
+  el.textContent="「 "+LADY[0]+" 」";
+  setInterval(()=>{i=(i+1)%LADY.length;el.style.opacity=0;
+    setTimeout(()=>{el.textContent="「 "+LADY[i]+" 」";el.style.opacity=1},400);
+  },6000);
+}
+function clockTick(){
+  const d=new Date(),h=d.getHours(),m=String(d.getMinutes()).padStart(2,"0");
+  const open=h>=11&&h<23;
+  $("#openLamp").className="lamp"+(open?"":" closed");
+  $("#openLamp").textContent=open?"OPEN 営業中":"準備中";
+  $("#clock").textContent=`店内时间 ${h}:${m}`;
+}
+buildTabs();renderMenu();renderCart();
 </script>
 </body>
 </html>
