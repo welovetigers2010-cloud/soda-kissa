@@ -70,19 +70,20 @@ header h1 .jp{font-family:'Cormorant Garamond',serif;font-style:italic;font-size
   font-weight:700;font-size:12px;letter-spacing:2px;padding:8px 18px;border-radius:999px;cursor:pointer;transition:all .2s}
 .tab.on{background:var(--wood);color:var(--cream)}
 .menu{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px;margin-top:18px}
-.mcard{background:#fff;border-radius:10px;overflow:hidden;border:1px solid var(--hair);box-shadow:0 4px 14px rgba(59,47,38,.08);transition:transform .2s}
+.mcard{background:var(--card);border-radius:10px;overflow:hidden;border:1px solid var(--hair);box-shadow:0 4px 14px rgba(59,47,38,.08);transition:transform .2s}
 .mcard:active{transform:scale(.98)}
-.mimg{position:relative;height:158px;background:linear-gradient(135deg,#E8E0D0,#D9CDB8)}
-.mimg img{width:100%;height:100%;object-fit:cover;display:block}
-.mimg .shine{position:absolute;inset:0;background:linear-gradient(115deg,transparent 42%,rgba(255,255,255,.32) 50%,transparent 58%)}
+.mimg{position:relative;background:var(--cream)}
+.mimg img{width:100%;height:auto;display:block;aspect-ratio:1/1;object-fit:cover}
+.mimg .shine{pointer-events:none;position:absolute;inset:0;background:linear-gradient(115deg,transparent 42%,rgba(255,255,255,.32) 50%,transparent 58%)}
 .mimg.noimg::after{content:'♨ 准备中';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:12px}
 .stamp{position:absolute;top:10px;right:10px;font-family:'Noto Serif SC',serif;font-size:12px;font-weight:700;color:var(--cherry);
   border:2px solid var(--cherry);padding:2px 9px;border-radius:4px;transform:rotate(-11deg);background:rgba(255,246,228,.9);letter-spacing:2px}
 .mbody{padding:12px 14px 14px}
 .mjp{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:12px;letter-spacing:1px;color:var(--sodaD)}
-.mzh{font-family:'Noto Serif SC',serif;font-size:17px;font-weight:600;letter-spacing:1px;margin-top:1px}
+.mzh{font-family:'Noto Serif SC',serif;font-size:18px;font-weight:600;letter-spacing:1px;margin-top:2px;display:flex;align-items:baseline;justify-content:space-between;gap:8px}
+.mzh::after{content:"";flex:1;border-bottom:1.5px dotted var(--hair);margin:0 2px 6px}
 .md{font-family:'Noto Sans SC',sans-serif;font-size:11px;color:var(--muted);line-height:1.8;margin-top:4px}
-.mrow{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
+.mrow{display:flex;justify-content:flex-end;margin-top:10px}
 .mp{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:600;color:var(--cherry)}
 .orderbtn{border:none;background:var(--wood);color:var(--cream);font-family:inherit;font-weight:700;font-size:11.5px;
   letter-spacing:2px;padding:8px 18px;border-radius:999px;cursor:pointer;transition:transform .15s}
@@ -135,6 +136,20 @@ footer .fine{display:block;font-size:10px;opacity:.7;margin-top:6px}
   background:var(--wood2);color:var(--cream);padding:11px 24px;border-radius:999px;font-size:12.5px;letter-spacing:2px;
   opacity:0;pointer-events:none;transition:all .3s}
 #toast.show{opacity:1;transform:translate(-50%,0)}
+/* ============ 分时段氛围（六段） ============ */
+body{transition:background 1.2s,color 1.2s}
+body.tp-night{--paper:#1A2032;--card:#232A45;--ink:#E7E5F2;--ink2:#AAAFCE;--muted:#7B81A2;--accent:#E8C98A;--hair:rgba(231,229,242,.12);--cherry:#D96B78;--wood:#3A3350;--wood2:#2C2740;--cream:#F2EFE2}
+body.tp-dawn{--paper:#FFF9EE;--card:#FFFFFF;--ink:#4A3A30;--ink2:#6B5A4C;--muted:#A29484;--accent:#6BA3B8;--hair:rgba(74,58,48,.14);--cherry:#C74852;--wood:#5C4432;--wood2:#3E2E22;--cream:#FFF6E4}
+body.tp-day{--paper:#FDFBF5;--card:#FFFFFF;--ink:#3B2F26;--ink2:#5C4E40;--muted:#9A8C7A;--accent:#3E88A0;--hair:rgba(59,47,38,.16);--cherry:#C74852;--wood:#5C4432;--wood2:#3E2E22;--cream:#FFF6E4}
+body.tp-noon{--paper:#FBF5E9;--card:#FFFDF6;--ink:#453528;--ink2:#63543F;--muted:#A2917A;--accent:#B98A3E;--hair:rgba(69,53,40,.15);--cherry:#C74852;--wood:#5C4432;--wood2:#3E2E22;--cream:#FFF8E8}
+body.tp-dusk{--paper:#FBF0DE;--card:#FFF9EC;--ink:#4E3A28;--ink2:#6E563C;--muted:#A98F6F;--accent:#C88A3E;--hair:rgba(78,58,40,.16);--cherry:#B54A45;--wood:#5C4432;--wood2:#3E2E22;--cream:#FFF7E6}
+body.tp-sunset{--paper:#F9E7DC;--card:#FFF7EE;--ink:#4E3229;--ink2:#6E4A3C;--muted:#A8836F;--accent:#C75B45;--hair:rgba(78,50,41,.17);--cherry:#B5433E;--wood:#573F2E;--wood2:#3A2A1E;--cream:#FFF4E6}
+body.tp-evening{--paper:#232739;--card:#2D3350;--ink:#E7E5F2;--ink2:#AAAFCE;--muted:#7B81A2;--accent:#E8B04B;--hair:rgba(231,229,242,.12);--cherry:#D96B78;--wood:#3A3350;--wood2:#2C2740;--cream:#F2EFE2}
+body.tp-night::before,body.tp-evening::before{opacity:.1}
+.period{text-align:center;font-family:'Noto Serif SC',serif;font-size:11.5px;letter-spacing:4px;color:var(--accent);margin-top:2px}
+.seatchip{display:block;margin:14px auto 0;border:1.5px dashed var(--accent);background:none;color:var(--ink2);
+  font-family:'Noto Sans SC',sans-serif;font-size:11.5px;letter-spacing:2px;padding:8px 20px;border-radius:999px;cursor:pointer;transition:all .2s}
+.seatchip:hover{background:var(--accent);color:var(--cream)}
 .spark{position:fixed;width:7px;height:7px;border-radius:50%;pointer-events:none;z-index:70;animation:fall 1s forwards}
 @keyframes fall{to{transform:translateY(46vh) rotate(540deg);opacity:0}}
 .hidden{display:none!important}
@@ -165,7 +180,9 @@ footer .fine{display:block;font-size:10px;opacity:.7;margin-top:6px}
     <div class="lamp" id="openLamp">OPEN 営業中</div>
     <h1>气泡喫茶店 <span class="jp">Soda Kissaten</span></h1>
     <div class="clock" id="clock"></div>
+    <div class="period" id="period"></div>
     <div class="lady" id="lady"></div>
+    <button class="seatchip" id="seatChip"></button>
   </header>
 
   <div class="board">
@@ -250,7 +267,7 @@ let SEAT=localStorage.getItem("sk_seat")||"";
 function enter(){
   SEAT=$("#seatSel").value||SEATS[0];localStorage.setItem("sk_seat",SEAT);
   $("#door").classList.add("leave");
-  setTimeout(()=>$("#door").remove(),900);
+  setTimeout(()=>$("#door").classList.add("gone"),900);
   document.body.style.overflow="";
   ladyLoop();clockTick();setInterval(clockTick,30000);
   toast("いらっしゃいませ —— "+SEAT);
@@ -348,6 +365,15 @@ $("#checkout").addEventListener("click",()=>{
 $("#receiptOv").addEventListener("click",e=>{if(e.target.id==="receiptOv")e.target.classList.remove("on")});
 
 /* ============ 女将 & 时钟 & 黑板 ============ */
+function PERIOD(h){
+  if(h>=5&&h<8)  return {k:"dawn",   label:"朝 · 晨光喫茶"};
+  if(h>=8&&h<11) return {k:"day",    label:"昼 · 白日气泡"};
+  if(h>=11&&h<16)return {k:"noon",   label:"午后 · 暖木时光"};
+  if(h>=16&&h<18)return {k:"dusk",   label:"夕方 · 斜阳入店"};
+  if(h>=18&&h<20)return {k:"sunset", label:"落日 · 绯红一杯"};
+  if(h>=20&&h<23)return {k:"evening",label:"夜 · 灯下慢饮"};
+  return {k:"night", label:"夜半 · 深夜喫茶"};
+}
 function ladyLoop(){
   const el=$("#lady");let i=0;
   el.textContent="「 "+LADY[0]+" 」";
@@ -361,7 +387,16 @@ function clockTick(){
   $("#openLamp").className="lamp"+(open?"":" closed");
   $("#openLamp").textContent=open?"OPEN 営業中":"準備中";
   $("#clock").textContent=`店内时间 ${h}:${m}`;
+  const P=PERIOD(h);
+  $("#period").textContent=P.label;
+  document.body.className="tp-"+P.k;
+  $("#seatChip").textContent=SEAT?"座位："+SEAT.split(" ·")[0]+" ｜ 换个座位":"－";
 }
+$("#seatChip").addEventListener("click",()=>{
+  $("#door").classList.remove("gone");$("#door").classList.remove("leave");
+  document.body.style.overflow="hidden";
+  toast("选个新位置吧 —— 风景会变");
+});
 buildTabs();renderMenu();renderCart();
 </script>
 </body>
