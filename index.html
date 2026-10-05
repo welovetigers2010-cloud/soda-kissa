@@ -73,7 +73,7 @@ header h1 .jp{font-family:'Cormorant Garamond',serif;font-style:italic;font-size
 .mcard{background:var(--card);border-radius:10px;overflow:hidden;border:1px solid var(--hair);box-shadow:0 4px 14px rgba(59,47,38,.08);transition:transform .2s}
 .mcard:active{transform:scale(.98)}
 .mimg{position:relative;background:var(--cream)}
-.mimg img{width:100%;height:auto;display:block;aspect-ratio:1/1;object-fit:cover}
+.mimg img{width:100%;aspect-ratio:16/9;object-fit:cover;object-position:center 45%;display:block;transition:transform .4s}
 .mimg .shine{pointer-events:none;position:absolute;inset:0;background:linear-gradient(115deg,transparent 42%,rgba(255,255,255,.32) 50%,transparent 58%)}
 .mimg.noimg{display:flex;align-items:center;justify-content:center;background:var(--cream)}
 .mimg.noimg::after{content:'♨ 准备中';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:12px}
