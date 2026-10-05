@@ -75,13 +75,20 @@ header h1 .jp{font-family:'Cormorant Garamond',serif;font-style:italic;font-size
 .mimg{position:relative;background:var(--cream)}
 .mimg img{width:100%;height:auto;display:block;aspect-ratio:1/1;object-fit:cover}
 .mimg .shine{pointer-events:none;position:absolute;inset:0;background:linear-gradient(115deg,transparent 42%,rgba(255,255,255,.32) 50%,transparent 58%)}
+.mimg.noimg{display:flex;align-items:center;justify-content:center;background:var(--cream)}
 .mimg.noimg::after{content:'♨ 准备中';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:12px}
 .stamp{position:absolute;top:10px;right:10px;font-family:'Noto Serif SC',serif;font-size:12px;font-weight:700;color:var(--cherry);
   border:2px solid var(--cherry);padding:2px 9px;border-radius:4px;transform:rotate(-11deg);background:rgba(255,246,228,.9);letter-spacing:2px}
 .mbody{padding:12px 14px 14px}
 .mjp{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:12px;letter-spacing:1px;color:var(--sodaD)}
-.mzh{font-family:'Noto Serif SC',serif;font-size:18px;font-weight:600;letter-spacing:1px;margin-top:2px;display:flex;align-items:baseline;justify-content:space-between;gap:8px}
-.mzh::after{content:"";flex:1;border-bottom:1.5px dotted var(--hair);margin:0 2px 6px}
+.mzh{font-family:'Noto Serif SC',serif;font-size:18px;font-weight:600;letter-spacing:1px;margin-top:2px;display:flex;align-items:baseline;gap:8px}
+.mzh .dots{flex:1;border-bottom:1.5px dotted var(--hair);margin:0 2px 5px}
+.mzh .pp{font-style:normal;font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:600;color:var(--cherry);letter-spacing:0}
+.mimg{cursor:pointer;min-height:120px}
+.mimg::after{content:'来一份 +';position:absolute;right:12px;bottom:12px;background:rgba(30,24,18,.82);color:#FFF6E4;
+  font-family:'Noto Sans SC',sans-serif;font-size:11.5px;font-weight:700;letter-spacing:2px;padding:9px 16px;border-radius:999px;
+  pointer-events:none;backdrop-filter:blur(4px);box-shadow:0 4px 12px rgba(0,0,0,.25);transition:transform .15s}
+.mimg:active::after{transform:scale(.94)}
 .md{font-family:'Noto Sans SC',sans-serif;font-size:11px;color:var(--muted);line-height:1.8;margin-top:4px}
 .mrow{display:flex;justify-content:flex-end;margin-top:10px}
 .mp{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:600;color:var(--cherry)}
@@ -90,7 +97,7 @@ header h1 .jp{font-family:'Cormorant Garamond',serif;font-style:italic;font-size
 .orderbtn:active{transform:scale(.93)}
 
 /* ============ 点单篮 ============ */
-#cartBtn{position:fixed;right:14px;bottom:calc(env(safe-area-inset-bottom) + 14px);z-index:40;opacity:.94;border:none;cursor:pointer;
+#cartBtn{position:fixed;right:10px;bottom:calc(env(safe-area-inset-bottom) + 10px);z-index:40;opacity:.92;border:none;cursor:pointer;
   background:var(--cherry);color:#FFF6E4;font-family:inherit;font-weight:700;font-size:12.5px;letter-spacing:2px;
   padding:13px 22px;border-radius:999px;box-shadow:0 8px 22px rgba(199,72,82,.4)}
 #cartBtn b{font-family:'Cormorant Garamond',serif;font-size:15px;margin-left:4px}
@@ -301,9 +308,9 @@ function renderMenu(){
         ${tasted?'<span class="stamp">来过</span>':""}</div>
       <div class="mbody">
         <div class="mjp">${m.jp}</div>
-        <div class="mzh">${m.zh}</div>
+        <div class="mzh"><span>${m.zh}</span><i class="dots"></i><em class="pp">¥${m.price}</em></div>
         <div class="md">${m.d}</div>
-        <div class="mrow"><span class="mp">¥${m.price}</span><button class="orderbtn">来一份</button></div>
+        <div class="mrow"><button class="orderbtn">来一份</button></div>
       </div>`;
     c.querySelector(".orderbtn").addEventListener("click",e=>{
       CART.push(m);saveCart();renderCart();
@@ -396,6 +403,10 @@ $("#seatChip").addEventListener("click",()=>{
   $("#door").classList.remove("gone");$("#door").classList.remove("leave");
   document.body.style.overflow="hidden";
   toast("选个新位置吧 —— 风景会变");
+});
+$("#menu").addEventListener("click",e=>{
+  const im=e.target.closest(".mimg");
+  if(im){const btn=im.parentNode.querySelector(".orderbtn");if(btn)btn.click();}
 });
 buildTabs();renderMenu();renderCart();
 </script>
